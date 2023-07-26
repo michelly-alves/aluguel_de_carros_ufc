@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header-topo">
+        <div class="header-nav">
+            <ul>
+                <li><a href="/signin">Login</a></li>
+                <li><a href="/signup">Cadastro</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <form action="/busca" method="post">
+        busca:<input type="text" name="busca">
+    </form>
+
+    <div class="grid-container">
+        <% for (let i = 0; i < carros.length; i++) { %>
+            <div class="grid-item">
+                <img src="<%= carros[i].imagem %>" alt="carro" width="400px">
+                <h3><%= carros[i].nome %></h3>
+                <p>Marca: <%= carros[i].marca %></p>
+                <p>Cor: <%= carros[i].cor %></p>
+                <p>Valor: <%= carros[i].valor %></p>
+                <p>Preço da diária: <%= carros[i].precoDiaria %></p>
+                <p>Status: <%= carros[i].status %></p>
+            </div>
+        <% } %>
+    </div>
+    
+</body>
+
+</html>

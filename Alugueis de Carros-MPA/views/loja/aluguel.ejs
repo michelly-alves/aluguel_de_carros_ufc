@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header-topo">
+        <nav class="header-nav">
+            <ul>
+                <li> <a href="/loja/aluguel"> Meus Alugueis</a></li>
+                <li> <a href="/loja"> Loja</a></li>
+                <li> <a href="/loja/conta"> Minha conta</a></li>
+            </ul>
+        </nav>
+        <div class="grid-container">
+            <% for (let i = 0; i < aluguel.length; i++) { %>
+            <div class="grid-item">
+                <img src="<%= aluguel[i].carro.imagem %>" alt="carro" width="400px">
+
+                <p>Cor: <%= aluguel[i].carro.cor %></p>
+                <p>Valor: <%= aluguel[i].carro.valor %></p>
+                <p>Preço da diária: <%= aluguel[i].carro.precoDiaria %></p>
+                <p>Status: <%= aluguel[i].status %></p>
+
+                <p>Data de Início: <%= aluguel[i].dataInicio %></p>
+                <p>Data de Fim: <%= aluguel[i].dataFim %></p>
+                <p>Valor Total: <%= aluguel[i].valorTotal %></p>
+                <p>Forma de Pagamento: <%= aluguel[i].formaPagamento %></p>
+            </div>
+            <% } %>
+        </div>
+
+</body>
+
+</html>

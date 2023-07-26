@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    
+    <div class="grid-container">
+        <div class="grid-item">
+            <form class="form-container" action="/loja/alugar/<%= carros.nome %>" method="post" onsubmit="return validateForm()">
+                <img src="<%= carros.imagem %>" alt="carro" width="400px">
+                <h3><%= carros.nome %></h3>
+                <p>Marca: <%= carros.marca %></p>
+                <p>Cor: <%= carros.cor %></p>
+                <p>Valor: <%= carros.valor %></p>
+                <p>Preço da diária: <%= carros.precoDiaria %></p>
+                <p>Status: <%= carros.status %></p>
+                Início Aluguel: <input type="date" name="datainicio" id="input-inicio" value="<%= carros.inicio %>"> <br>
+                Fim do Aluguel: <input type="date" name="dataFim" id="input-fim" value="<%= carros.dataFim %>"> <br>
+                Valor Total: <span id="valor-total"></span> <br>
+                <input type="hidden" name="valorTotal" id="input-valor-total">
+                <br>
+                Formas de Pagamento:
+                <br>
+                <label for="boleto">
+                    <input type="radio" id="boleto" name="formaPagamento" value="boleto">
+                    Boleto
+                </label>
+                <br>
+                <label for="cartao">
+                    <input type="radio" id="cartao" name="formaPagamento" value="cartao">
+                    Cartão
+                </label> <br>
+                <label for="pix">
+                    <input type="radio" id="pix" name="formaPagamento" value="pix">
+                    Pix
+                </label> <br>
+
+                <input type="submit" value="Confirmar reserva"> <br>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const inputInicio = document.getElementById('input-inicio');
+        const inputFim = document.getElementById('input-fim');
+        const valorTotal = document.getElementById('valor-total');
+        const precoDiaria = <%= carros.precoDiaria %>;
+
+        function calcularDiarias() {
+            const inicio = new Date(inputInicio.value);
+            const fim = new Date(inputFim.value);
+            const diffTime = Math.abs(fim - inicio);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const valorCalculado = diffDays * precoDiaria;
+            valorTotal.textContent = `R$ ${valorCalculado.toFixed(2)}`;
+            const inputValorTotal = document.getElementById('input-valor-total');
+            inputValorTotal.value = valorCalculado.toFixed(2);
+        }
+
+        inputInicio.addEventListener('input', calcularDiarias);
+        inputFim.addEventListener('input', calcularDiarias);
+    </script>
+
+<script>
+    function validateForm() {
+        const inputInicio = document.getElementById('input-inicio');
+        const inputFim = document.getElementById('input-fim');
+
+
+        if (inputInicio.value.trim() === '' || inputFim.value.trim() === '') {
+            alert('Por favor, preencha todos os campos.');
+            return false;
+        }
+
+
+        const inicio = new Date(inputInicio.value);
+        const fim = new Date(inputFim.value);
+        if (inicio > fim) {
+            alert('A data de início deve ser anterior ou igual à data de fim.');
+            return false; 
+        }
+
+        return true; 
+    }
+</script>
+</body>
+</html>

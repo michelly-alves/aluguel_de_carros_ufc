@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aluguel de Carros</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+  <script>
+    function openModal(modalId) {
+      const modal = document.getElementById(`modal-${modalId}`);
+      modal.style.display = "block";
+    }
+    function openModal(modalId) {
+    const modal = document.getElementById(`modal-${modalId}`);
+    modal.style.display = "block";
+  }
+  
+  function closeModal(modalId) {
+    const modal = document.getElementById(`modal-${modalId}`);
+    modal.style.display = "none";
+  }
+  </script>
+</head>
+
+<body>
+  <header class="header-topo">
+    <div class="header-nav">
+      <ul>
+        <li><a href="/admin/loja">Loja</a></li>
+        <li><a href="add-carro">Adicionar carro</a></li>
+        <li><a href="/logout">Sair</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="grid-container">
+    <% for (let i = 0; i < aluguel.length; i++) { %>
+    <div class="grid-item">
+      <img src="<%= aluguel[i].carro.imagem %>" alt="carro" >
+      <button onclick="openModal('<%= aluguel[i]._id %>')"><%= aluguel[i]._id %></button>
+
+      <div id="modal-<%= aluguel[i]._id %>" class="modal">
+        <div class="modal-content">
+          <p>Cliente: <%= aluguel[i].nomeUser %></p>
+          <p>Status: <%= aluguel[i].status %></p>
+          <p>Valor Total: <%= aluguel[i].valorTotal %></p>
+          <p>Informações adicionais:</p>
+          <p>Cor: <%= aluguel[i].carro.cor %></p>
+          <p>Valor: <%= aluguel[i].carro.valor %></p>
+          <p>Preço da diária: <%= aluguel[i].carro.precoDiaria %></p>
+          <p>Status: <%= aluguel[i].status %></p>
+          <p>Data de Início: <%= aluguel[i].dataInicio %></p>
+          <p>Data de Fim: <%= aluguel[i].dataFim %></p>
+          <p>Valor Total: <%= aluguel[i].valorTotal %></p>
+          <p>Cliente: <%= aluguel[i].nomeUser %></p>
+          <p>ID do Aluguel: <%= aluguel[i]._id %></p>
+
+          <%if (aluguel[i].status == "Aguardando Confirmação"){ %>
+            <form action="/admin/aluguel/<%= aluguel[i]._id %>" method="POST">
+              <input type="hidden" name="_method" value="post">
+              <button type="submit" name="status" value="Confirmado">ACEITAR</button>
+              <button type="submit" name="status" value="Rejeitado">REJEITAR</button>
+            </form>
+            <% } %>
+            <button onclick="closeModal('<%= aluguel[i]._id %>')">Fechar</button>
+        </div>
+        </div>
+       </div>
+
+   
+    <% } %>
+  </div>
+
+</body>
+
+</html>

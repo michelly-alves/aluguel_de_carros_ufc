@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script>
+        function check(input) {
+    if (input.value !== document.getElementById('new-password').value) {
+        input.setCustomValidity('As senhas não estão iguais');
+    } else {
+        input.setCustomValidity('');
+    }
+}
+
+    </script>
+</head>
+
+<body>
+    <form class="form-container" action="/loja/senha-editar" method="post">
+        
+        <label for="oldpassword">Old Password:</label>
+        <input type="text" id="password" name="oldpassword" required>
+        <% if (message) { %>
+            <p class="error" ><%= message %></p>
+          <% } %>
+        <p>Senha com uma letra maiuscula, um numero, uma minuscula e 8 caracteres</p>
+        <label for="password">Password:</label>
+        <input type="text" id="new-password" name="password" required>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" oninput="check(this)" required>
+        <p id="message"></p>
+        <input type="submit" value="Salvar" /><br>
+    </form>
+</body>
+
+
+
+</html>

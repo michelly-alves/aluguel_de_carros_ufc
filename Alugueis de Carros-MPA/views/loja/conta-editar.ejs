@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <script>
+        function check(input) {
+            if (input.value !== document.getElementById('password').value) {
+                input.setCustomValidity('Passwords must match');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <nav>
+            <ul>
+                <li> <a href="/aluguel"> Meus Alugueis</a></li>
+                <li> <a href="/loja"> Minha loja</a></li>
+                <li> <a href="/conta"> Minha conta</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <form class="form-container" action="/loja/conta-editar" method="post">
+        <h5>Edite seus dados</h5>
+        Name: <input type="text" name="name" value="<%= user.name %>" required/><br />
+        Data de nascimento: <input type="date" value="<%= user.dataNascimento %>" name="dataNascimento"  required/><br />
+        Genero: <select name="genero"  required> <br>
+            <option name="feminino">feminino</option>
+            <option name="masculino">masculino</option>
+        </select> <br>
+        Telefone: <input type="tel" name="telefone" value=" <%= user.telefone %>" required> <br>
+        Email: <input type="email" name="email" value="<%= user.email %>" />
+        <% if (message) { %>
+            <p class="error" ><%= message %></p>
+          <% } %>
+    <input type="submit" value="Save" /><br>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="header-topo">
+        <nav class="header-nav">
+            <ul>
+                <li> <a href="/loja/aluguel"> Meus Alugueis</a></li>
+                <li> <a href="/loja"> Loja</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="grid-container">
+        <% if (user) { %>
+          <div class="grid-item">
+            <p>nome: <%= user.name %></p>
+            <p>genero: <%= user.genero %></p>
+            <p>data nascimento: <%= user.dataNascimento %></p>
+            <p>telefone: <%= user.telefone %></p>
+            <p>email: <%= user.email %></p>
+            <a href="/loja/conta-editar">conta editar</a>
+            <a href="/loja/senha-editar">senha editar</a>
+          </div>
+        <% } %>
+      </div>
+      
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel de Carros</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <form class="form-container" action="/admin/editar-carro/<%= carros.nome %>" method="post">
+    
+          imagem: <input type="url" name="imagem" value="<%= carros.imagem %>"> <br>
+          marca: <input type="text" name="marca" value="<%= carros.marca %>"> <br>
+          cor: <input type="text" name="cor" value="<%= carros.cor %>"> <br>
+          valor: <input type="number" name="valor" value="<%= carros.valor %>"> <br>
+          preço da diaria: <input type="number" name="precoDiaria" value="<%= carros.precoDiaria %>"> <br>
+
+        <input type="submit" value="Salvar"> <br>
+      </form>
+      
+      
+</body>
+</html>
